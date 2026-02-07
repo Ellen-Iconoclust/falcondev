@@ -70,7 +70,7 @@
     }
 
     /* Subtle Blue Glow & Pulse */
-    .hero-glow-container {
+    .glow-container {
       position: absolute;
       top: 0;
       left: 0;
@@ -81,9 +81,9 @@
       z-index: 0;
     }
 
-    .hero-glow-orb {
+    .glow-orb {
       position: absolute;
-      top: 20%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 80vw;
@@ -94,6 +94,11 @@
       filter: blur(100px);
       opacity: 0.4;
       animation: pulse-glow 8s ease-in-out infinite;
+    }
+
+    /* Positioning for Hero specifically */
+    .hero-glow-orb {
+      top: 20%;
     }
 
     @keyframes pulse-glow {
@@ -499,8 +504,8 @@
       <!-- Hero -->
       <section class="min-h-screen relative flex flex-col justify-end p-8 md:p-24 pb-20 pt-48 md:pt-36">
         <!-- Blue Glow Animation Overlay -->
-        <div class="hero-glow-container">
-          <div class="hero-glow-orb"></div>
+        <div class="glow-container">
+          <div class="glow-orb hero-glow-orb"></div>
         </div>
 
         <div class="mb-12 relative z-10">
@@ -715,12 +720,19 @@
       </section>
 
       <!-- Contact/Call to Action -->
-      <section id="contact" class="py-60 p-8 md:p-16 text-center">
-        <span class="meta-text block mb-12">Got a vision?</span>
-        <h2 class="power-text mb-20 leading-none">LET'S TALK</h2>
-        <a href="mailto:hello@ellen.dev" class="btn-premium">
-          <span class="font-bold uppercase tracking-widest text-xs">Start a Project</span>
-        </a>
+      <section id="contact" class="py-60 p-8 md:p-16 text-center relative overflow-hidden">
+        <!-- Blue Glow Animation Overlay Bottom -->
+        <div class="glow-container">
+          <div class="glow-orb"></div>
+        </div>
+
+        <div class="relative z-10">
+          <span class="meta-text block mb-12">Got a vision?</span>
+          <h2 class="power-text mb-20 leading-none">LET'S TALK</h2>
+          <a href="mailto:hello@ellen.dev" class="btn-premium">
+            <span class="font-bold uppercase tracking-widest text-xs">Start a Project</span>
+          </a>
+        </div>
       </section>
 
       <!-- Premium Footer -->
