@@ -140,8 +140,13 @@
     }
 
     @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .tool-icon {
@@ -168,7 +173,7 @@
       letter-spacing: 0.1em;
       font-weight: 600;
       transition: all 0.3s ease;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .chip:hover {
@@ -239,14 +244,54 @@
 
     @media (max-width: 900px) {
       .parent {
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr;
         grid-template-rows: auto;
+        gap: 16px;
       }
-      .div1, .div2, .div3, .div4, .div5, .div6 {
-        grid-column: span 2 !important;
+
+      .grid-item {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 250px;
+        grid-column: auto !important;
         grid-row: auto !important;
-        height: 300px;
       }
+
+      /* Mobile Ordering */
+      .div1 {
+        order: 1;
+        min-height: 400px;
+      }
+
+      /* Photo */
+      .div2 {
+        order: 2;
+      }
+
+      /* Manifesto */
+      .div5 {
+        order: 3;
+      }
+
+      /* Tech Stack */
+      .div4 {
+        order: 4;
+      }
+
+      /* Tools */
+      .div3 {
+        order: 5;
+      }
+
+      /* Song */
+      .div6 {
+        order: 6;
+        min-height: 150px;
+      }
+
+      /* Confetti */
     }
   </style>
 </head>
@@ -269,11 +314,11 @@
       <span class="meta-text">Heavy Rotation</span>
       <a href="https://open.spotify.com/track/5O2P9iiztwhomNh8xkR9lJ" target="_blank" class="spotify-link">
         <div class="flex items-center gap-3">
-            <i data-lucide="music" class="w-8 h-8"></i>
-            <div>
-                <p class="text-xl">Night Changes</p>
-                <p class="text-xs opacity-70 font-normal">One Direction</p>
-            </div>
+          <i data-lucide="music" class="w-8 h-8"></i>
+          <div>
+            <p class="text-xl">Night Changes</p>
+            <p class="text-xs opacity-70 font-normal">One Direction</p>
+          </div>
         </div>
         <span class="text-[10px] mt-2 uppercase tracking-widest opacity-60">Listen on Spotify</span>
       </a>
@@ -285,19 +330,31 @@
       <div class="overflow-hidden relative h-24">
         <div class="carousel-track">
           <!-- Tools -->
-          <div class="tool-icon"><i data-lucide="code"></i><span class="text-[8px] uppercase font-bold">VS Code</span></div>
-          <div class="tool-icon"><i data-lucide="github"></i><span class="text-[8px] uppercase font-bold">Github</span></div>
-          <div class="tool-icon"><i data-lucide="bot"></i><span class="text-[8px] uppercase font-bold">ChatGPT</span></div>
-          <div class="tool-icon"><i data-lucide="git-branch"></i><span class="text-[8px] uppercase font-bold">Git</span></div>
-          <div class="tool-icon"><i data-lucide="music"></i><span class="text-[8px] uppercase font-bold">Spotify</span></div>
-          <div class="tool-icon"><i data-lucide="box"></i><span class="text-[8px] uppercase font-bold">Docker</span></div>
+          <div class="tool-icon"><i data-lucide="code"></i><span class="text-[8px] uppercase font-bold">VS Code</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="github"></i><span class="text-[8px] uppercase font-bold">Github</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="bot"></i><span class="text-[8px] uppercase font-bold">ChatGPT</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="git-branch"></i><span class="text-[8px] uppercase font-bold">Git</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="music"></i><span class="text-[8px] uppercase font-bold">Spotify</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="box"></i><span class="text-[8px] uppercase font-bold">Docker</span>
+          </div>
           <!-- Repeats -->
-          <div class="tool-icon"><i data-lucide="code"></i><span class="text-[8px] uppercase font-bold">VS Code</span></div>
-          <div class="tool-icon"><i data-lucide="github"></i><span class="text-[8px] uppercase font-bold">Github</span></div>
-          <div class="tool-icon"><i data-lucide="bot"></i><span class="text-[8px] uppercase font-bold">ChatGPT</span></div>
-          <div class="tool-icon"><i data-lucide="git-branch"></i><span class="text-[8px] uppercase font-bold">Git</span></div>
-          <div class="tool-icon"><i data-lucide="music"></i><span class="text-[8px] uppercase font-bold">Spotify</span></div>
-          <div class="tool-icon"><i data-lucide="box"></i><span class="text-[8px] uppercase font-bold">Docker</span></div>
+          <div class="tool-icon"><i data-lucide="code"></i><span class="text-[8px] uppercase font-bold">VS Code</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="github"></i><span class="text-[8px] uppercase font-bold">Github</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="bot"></i><span class="text-[8px] uppercase font-bold">ChatGPT</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="git-branch"></i><span class="text-[8px] uppercase font-bold">Git</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="music"></i><span class="text-[8px] uppercase font-bold">Spotify</span>
+          </div>
+          <div class="tool-icon"><i data-lucide="box"></i><span class="text-[8px] uppercase font-bold">Docker</span>
+          </div>
         </div>
       </div>
     </div>
@@ -321,7 +378,8 @@
     <div class="grid-item div2">
       <span class="meta-text">Manifesto</span>
       <p class="text-xs font-medium tracking-wide uppercase leading-relaxed text-gray-400">
-        Specializing in crafting digital experiences that harmonize complex architectural logic with minimalist, high-fidelity aesthetics. I believe every line of code should contribute to a broader creative narrative.
+        Specializing in crafting digital experiences that harmonize complex architectural logic with minimalist,
+        high-fidelity aesthetics. I believe every line of code should contribute to a broader creative narrative.
       </p>
     </div>
 
@@ -337,7 +395,6 @@
     lucide.createIcons();
 
     const confettiBtn = document.getElementById('confetti-btn');
-    const confettiContainer = document.getElementById('confetti-container');
 
     confettiBtn.addEventListener('click', () => {
       confetti({
@@ -347,13 +404,11 @@
         colors: ['#ffffff', '#0066ff', '#1DB954']
       });
       
-      gsap.to(confettiContainer, {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.5,
-        ease: "power4.in",
-        onComplete: () => confettiContainer.style.visibility = 'hidden'
-      });
+      // Removed the logic that hides the container to allow multiple clicks
+      gsap.fromTo(confettiBtn, 
+        { scale: 0.95 }, 
+        { scale: 1, duration: 0.3, ease: "elastic.out(1, 0.3)" }
+      );
     });
   </script>
 </body>
