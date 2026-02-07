@@ -29,6 +29,7 @@
       --bg: #0a0a0a;
       --text: #e5e5e5;
       --accent: #ffffff;
+      --glow-blue: rgba(0, 102, 255, 0.3);
     }
 
     * {
@@ -66,6 +67,44 @@
       text-transform: uppercase;
       letter-spacing: 0.3em;
       color: #666;
+    }
+
+    /* Subtle Blue Glow & Pulse */
+    .hero-glow-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-glow-orb {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw;
+      height: 80vw;
+      max-width: 1000px;
+      max-height: 1000px;
+      background: radial-gradient(circle, var(--glow-blue) 0%, rgba(0, 0, 0, 0) 70%);
+      filter: blur(100px);
+      opacity: 0.4;
+      animation: pulse-glow 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 0.6;
+      }
     }
 
     /* Capsule Navigation */
@@ -458,8 +497,13 @@
     <main id="smooth-content">
 
       <!-- Hero -->
-      <section class="min-h-screen flex flex-col justify-end p-8 md:p-24 pb-20 pt-48 md:pt-36">
-        <div class="mb-12">
+      <section class="min-h-screen relative flex flex-col justify-end p-8 md:p-24 pb-20 pt-48 md:pt-36">
+        <!-- Blue Glow Animation Overlay -->
+        <div class="hero-glow-container">
+          <div class="hero-glow-orb"></div>
+        </div>
+
+        <div class="mb-12 relative z-10">
           <span class="meta-text block mb-6 opacity-50">Software & Creative Engineering</span>
           <h1 class="power-text leading-[0.85] md:leading-[0.85]">
             <span class="line-reveal">
@@ -473,7 +517,7 @@
             </span>
           </h1>
         </div>
-        <div class="flex flex-col md:flex-row justify-between items-end gap-10">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-10 relative z-10">
           <p class="max-w-md text-sm font-medium text-gray-400 uppercase tracking-wider leading-relaxed">
             Independent developer focusing on high-end digital experiences and architectural performance. Based in SF,
             working globally.
