@@ -35,7 +35,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      /* Native cursor restored */
       cursor: auto !important;
     }
 
@@ -190,12 +189,6 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    .menu-toggle i {
-      width: 24px;
-      height: 24px;
-      stroke-width: 2;
-    }
-
     /* Premium Contact Button */
     .btn-premium {
       position: relative;
@@ -303,7 +296,6 @@
       width: 100%;
     }
 
-    /* Project Info Toggle */
     .project-info-btn {
       width: 40px;
       height: 40px;
@@ -332,8 +324,74 @@
       margin-top: 2rem;
     }
 
+    /* Scroll Fill Text Effect */
+    .philosophy-text span {
+      color: rgba(255, 255, 255, 0.15);
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    .philosophy-text span.active {
+      color: white;
+    }
+
+    /* About Me Hover Circle */
+    .about-me-portrait {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 3/4;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    #about-cursor {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      background: white;
+      color: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      padding: 10px;
+    }
+
+    .about-me-portrait:hover~#about-cursor,
+    .about-me-portrait:hover #about-cursor {
+      opacity: 1;
+      transform: scale(1);
+    }
+
     ::-webkit-scrollbar {
       display: none;
+    }
+
+    /* Philosophy Quote Icon */
+    .quote-icon {
+      position: absolute;
+      font-size: clamp(10rem, 40vw, 30rem);
+      opacity: 0.02;
+      z-index: -1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .philosophy-italic {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-weight: 900;
     }
 
     @media (max-width: 768px) {
@@ -355,9 +413,8 @@
         display: block;
       }
 
-      .inspiration-card {
-        padding-left: 1rem;
-        padding-bottom: 2rem;
+      .quote-icon {
+        font-size: clamp(5rem, 30vw, 20rem);
       }
     }
   </style>
@@ -369,10 +426,13 @@
     <img src="" id="preview-img" class="w-full h-full object-cover">
   </div>
 
+  <div id="about-cursor">More<br>About Me</div>
+
   <!-- Mobile Menu Dropdown -->
   <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
     <div class="mobile-menu-links">
       <a href="#projects" class="meta-text">Works</a>
+      <a href="#philosophy" class="meta-text">Philosophy</a>
       <a href="#inspirations" class="meta-text">Inspirations</a>
       <a href="#contact" class="meta-text">Contact</a>
     </div>
@@ -393,22 +453,20 @@
           ELLEN<span class="font-premium-italic text-sm">©</span>
         </a>
 
-        <!-- Desktop Navigation Links -->
         <div class="nav-links">
           <a href="#projects" class="meta-text hover:text-white transition-colors whitespace-nowrap">Works</a>
+          <a href="#philosophy" class="meta-text hover:text-white transition-colors whitespace-nowrap">About</a>
           <a href="#inspirations"
             class="meta-text hover:text-white transition-colors whitespace-nowrap">Inspirations</a>
           <a href="#contact" class="meta-text hover:text-white transition-colors whitespace-nowrap">Contact</a>
         </div>
 
         <div class="h-4 w-[1px] bg-white/20 hidden md:block"></div>
-
         <span class="meta-text text-[8px] text-indigo-400 animate-pulse whitespace-nowrap hidden md:block">Available</span>
 
-        <!-- Mobile Menu Button - Hamburger Icon -->
         <button class="menu-toggle" id="menuToggle">
-                    <i data-lucide="menu"></i>
-                </button>
+          <i data-lucide="menu"></i>
+        </button>
       </div>
     </div>
   </nav>
@@ -424,13 +482,13 @@
           <span class="meta-text block mb-6 opacity-50">Software & Creative Engineering</span>
           <h1 class="power-text leading-[0.85] md:leading-[0.85]">
             <span class="line-reveal">
-                            <span class="reveal-inner text-[clamp(3rem,12vw,11rem)] md:text-[clamp(2rem,10vw,11rem)]">Design</span>
+              <span class="reveal-inner text-[clamp(3rem,12vw,11rem)] md:text-[clamp(2rem,10vw,11rem)]">Design</span>
             </span>
             <span class="line-reveal font-premium-italic text-transparent" style="-webkit-text-stroke: 1px white;">
-                            <span class="reveal-inner text-[clamp(3rem,12vw,11rem)] md:text-[clamp(2rem,10vw,11rem)]">& Logic</span>
+              <span class="reveal-inner text-[clamp(3rem,12vw,11rem)] md:text-[clamp(2rem,10vw,11rem)]">& Logic</span>
             </span>
             <span class="line-reveal">
-                            <span class="reveal-inner text-[clamp(3rem,12vw,11rem)] md:text-[clamp(2.5rem,12vw,12rem)]">Harmonized</span>
+              <span class="reveal-inner text-[clamp(3rem,12vw,11rem)] md:text-[clamp(2.5rem,12vw,12rem)]">Harmonized</span>
             </span>
           </h1>
         </div>
@@ -475,8 +533,8 @@
               <div class="flex items-center">
                 <span class="meta-text hidden md:block opacity-40">Creative Tech / 2024</span>
                 <button class="project-info-btn">
-                                    <i data-lucide="info"></i>
-                                </button>
+                  <i data-lucide="info"></i>
+                </button>
               </div>
             </div>
             <div class="project-description max-w-2xl">
@@ -500,8 +558,8 @@
               <div class="flex items-center">
                 <span class="meta-text hidden md:block opacity-40">Systems / 2024</span>
                 <button class="project-info-btn">
-                                    <i data-lucide="info"></i>
-                                </button>
+                  <i data-lucide="info"></i>
+                </button>
               </div>
             </div>
             <div class="project-description max-w-2xl">
@@ -525,8 +583,8 @@
               <div class="flex items-center">
                 <span class="meta-text hidden md:block opacity-40">Design Systems / 2023</span>
                 <button class="project-info-btn">
-                                    <i data-lucide="info"></i>
-                                </button>
+                  <i data-lucide="info"></i>
+                </button>
               </div>
             </div>
             <div class="project-description max-w-2xl">
@@ -549,14 +607,57 @@
               <div class="flex items-center">
                 <span class="meta-text hidden md:block opacity-40">Audio Web / 2023</span>
                 <button class="project-info-btn">
-                                    <i data-lucide="info"></i>
-                                </button>
+                  <i data-lucide="info"></i>
+                </button>
               </div>
             </div>
             <div class="project-description max-w-2xl">
               <p class="text-gray-400 text-sm uppercase tracking-widest leading-relaxed">
                 Experimental browser-based polyphonic synthesizer utilizing the Web Audio API for granular synthesis.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacing between Projects and Philosophy (Desktop only) -->
+      <div class="hidden md:block h-40"></div>
+
+      <!-- Philosophy Section -->
+      <section id="philosophy" class="py-40 p-8 md:p-16 overflow-hidden relative">
+        <!-- Title above Philosophy section -->
+        <div class="mb-16">
+          <span class="meta-text block mb-4 opacity-50">Core Beliefs</span>
+          <h2 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter">Philosophy</h2>
+        </div>
+
+        <!-- Quote Icon in background -->
+        <div class="quote-icon font-premium-italic opacity-5 absolute -left-4 -top-20 md:-left-10 md:-top-40">
+          "
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center relative z-10">
+          <div class="md:col-span-8">
+            <h2 class="philosophy-text text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-[1.1]">
+              <span class="philosophy-word">Code</span>
+              <span class="philosophy-word">is</span>
+              <span class="philosophy-word">my</span>
+              <span class="philosophy-word philosophy-italic">structure.</span>
+              <span class="philosophy-word">Creativity</span>
+              <span class="philosophy-word">is</span>
+              <span class="philosophy-word">my</span>
+              <span class="philosophy-word philosophy-italic">language.</span>
+              <span class="philosophy-word">Innovation</span>
+              <span class="philosophy-word">happens</span>
+              <span class="philosophy-word">where</span>
+              <span class="philosophy-word">both</span>
+              <span class="philosophy-word philosophy-italic">intersect.</span>
+            </h2>
+          </div>
+          <div class="md:col-span-4 flex justify-center relative">
+            <div class="about-me-portrait" id="about-trigger">
+              <!-- Using a high-quality placeholder that looks premium -->
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Ellen" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
             </div>
           </div>
         </div>
@@ -640,244 +741,237 @@
 
   <script>
     // Initialize Lucide icons
-        lucide.createIcons();
-        
-        const app = {
-            mouse: { x: 0, y: 0 }
-        };
+    lucide.createIcons();
 
-        // Track mouse for project previews and Three.js
-        window.addEventListener('mousemove', (e) => {
-            app.mouse.x = e.clientX;
-            app.mouse.y = e.clientY;
-            
-            const preview = document.getElementById('project-preview');
-            if (preview && preview.style.opacity === "1") {
-                gsap.to(preview, { x: e.clientX + 30, y: e.clientY - 200, duration: 0.6, ease: "power3.out" });
+    const app = {
+      mouse: { x: 0, y: 0 }
+    };
+
+    // Track mouse
+    window.addEventListener('mousemove', (e) => {
+      app.mouse.x = e.clientX;
+      app.mouse.y = e.clientY;
+
+      const preview = document.getElementById('project-preview');
+      if (preview && preview.style.opacity === "1") {
+        gsap.to(preview, { x: e.clientX + 30, y: e.clientY - 200, duration: 0.6, ease: "power3.out" });
+      }
+
+      // About Me Cursor
+      const aboutCursor = document.getElementById('about-cursor');
+      gsap.to(aboutCursor, { x: e.clientX - 50, y: e.clientY - 50, duration: 0.2 });
+    });
+
+    // Clock
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('local-time').innerText = `${timeStr} PST`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function closeMobileMenu() {
+      const dropdown = document.getElementById('mobileMenuDropdown');
+      const toggle = document.getElementById('menuToggle');
+      if (dropdown && dropdown.classList.contains('active')) {
+        dropdown.classList.remove('active');
+        const icon = toggle.querySelector('i');
+        if (icon) {
+          icon.setAttribute('data-lucide', 'menu');
+          lucide.createIcons();
+        }
+      }
+    }
+
+    const handleScrollTo = (e) => {
+      const link = e.currentTarget;
+      const targetId = link.getAttribute('href');
+      if (targetId === '#' || !targetId) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeMobileMenu();
+        return;
+      }
+      if (targetId.startsWith('#')) {
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          e.preventDefault();
+          closeMobileMenu();
+          const offset = 100;
+          const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+      }
+    };
+
+    function initMenuAndLinks() {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileDropdown = document.getElementById('mobileMenuDropdown');
+      if (menuToggle && mobileDropdown) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isActive = mobileDropdown.classList.toggle('active');
+          const icon = menuToggle.querySelector('i');
+          if (icon) {
+            icon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
+            lucide.createIcons();
+          }
+        });
+      }
+      document.addEventListener('click', (e) => {
+        if (mobileDropdown && mobileDropdown.classList.contains('active')) {
+          if (!mobileDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMobileMenu();
+          }
+        }
+      });
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', handleScrollTo);
+      });
+    }
+
+    function initNav() {
+      const nav = document.getElementById('main-nav-wrapper');
+      ScrollTrigger.create({
+        start: 'top -50',
+        onUpdate: (self) => {
+          if (self.direction === 1) nav.classList.add('nav-scrolled');
+          else if (self.scroll() < 50) nav.classList.remove('nav-scrolled');
+        }
+      });
+    }
+
+    function initProjects() {
+      const preview = document.getElementById('project-preview');
+      const previewImg = document.getElementById('preview-img');
+      document.querySelectorAll('.project-item').forEach(item => {
+        const mainRow = item.querySelector('.project-main-row');
+        const infoBtn = item.querySelector('.project-info-btn');
+        if (infoBtn) {
+          infoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            item.classList.toggle('active');
+            document.querySelectorAll('.project-item').forEach(other => {
+              if (other !== item) other.classList.remove('active');
+            });
+          });
+        }
+        if (mainRow) {
+          mainRow.addEventListener('click', (e) => {
+            if (!e.target.closest('.project-info-btn')) {
+              item.classList.toggle('active');
+              document.querySelectorAll('.project-item').forEach(other => {
+                if (other !== item) other.classList.remove('active');
+              });
             }
+          });
+          if (window.innerWidth > 768) {
+            mainRow.addEventListener('mouseenter', () => {
+              const imgSrc = item.getAttribute('data-img');
+              if (imgSrc) previewImg.src = imgSrc;
+              gsap.to(preview, { opacity: 1, scale: 1, duration: 0.4 });
+            });
+            mainRow.addEventListener('mouseleave', () => {
+              gsap.to(preview, { opacity: 0, scale: 0.8, duration: 0.4 });
+            });
+          }
+        }
+      });
+    }
+
+    function initThree() {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.getElementById('canvas-container').appendChild(renderer.domElement);
+      const geo = new THREE.SphereGeometry(1.5, 64, 64);
+      const mat = new THREE.MeshPhongMaterial({ color: 0x0066ff, wireframe: true, transparent: true, opacity: 0.2, emissive: 0x001133, shininess: 100 });
+      const mesh = new THREE.Mesh(geo, mat);
+      scene.add(mesh);
+      const light = new THREE.PointLight(0xffffff, 1, 100);
+      light.position.set(5, 5, 5);
+      scene.add(light);
+      const ambient = new THREE.AmbientLight(0x404040);
+      scene.add(ambient);
+      camera.position.z = 5;
+      function animate() {
+        requestAnimationFrame(animate);
+        mesh.rotation.x += 0.001;
+        mesh.rotation.y += 0.001;
+        const targetX = ((app.mouse.x / window.innerWidth - 0.5) * 2);
+        const targetY = (-(app.mouse.y / window.innerHeight - 0.5) * 2);
+        mesh.position.x += (targetX - mesh.position.x) * 0.02;
+        mesh.position.y += (targetY - mesh.position.y) * 0.02;
+        renderer.render(scene, camera);
+      }
+      animate();
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    function initPhilosophy() {
+        const words = document.querySelectorAll('.philosophy-word');
+        words.forEach((word) => {
+            gsap.to(word, {
+                scrollTrigger: {
+                    trigger: word,
+                    start: "top 80%",
+                    end: "top 40%",
+                    scrub: true,
+                    toggleClass: "active"
+                }
+            });
         });
 
-        // -- CLOCK --
-        function updateClock() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById('local-time').innerText = `${timeStr} PST`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // -- SCROLLING ENGINE --
-        function closeMobileMenu() {
-            const dropdown = document.getElementById('mobileMenuDropdown');
-            const toggle = document.getElementById('menuToggle');
-            if (dropdown && dropdown.classList.contains('active')) {
-                dropdown.classList.remove('active');
-                const icon = toggle.querySelector('i');
-                if (icon) {
-                    icon.setAttribute('data-lucide', 'menu');
-                    lucide.createIcons();
-                }
-            }
-        }
-
-        const handleScrollTo = (e) => {
-            const link = e.currentTarget;
-            const targetId = link.getAttribute('href');
-            
-            if (targetId === '#' || !targetId) {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                closeMobileMenu();
-                return;
-            }
-
-            if (targetId.startsWith('#')) {
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    e.preventDefault();
-                    closeMobileMenu();
-                    
-                    const offset = 100; // Header height offset
-                    const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        };
-
-        function initMenuAndLinks() {
-            const menuToggle = document.getElementById('menuToggle');
-            const mobileDropdown = document.getElementById('mobileMenuDropdown');
-            
-            // Hamburger Toggle
-            if (menuToggle && mobileDropdown) {
-                menuToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const isActive = mobileDropdown.classList.toggle('active');
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
-                        lucide.createIcons();
-                    }
-                });
-            }
-
-            // Close when clicking outside
-            document.addEventListener('click', (e) => {
-                if (mobileDropdown && mobileDropdown.classList.contains('active')) {
-                    if (!mobileDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
-                        closeMobileMenu();
-                    }
-                }
-            });
-
-            // Attach listeners to ALL anchors that start with #
-            // We do this immediately so they are always interactive
-            document.querySelectorAll('a[href^="#"]').forEach(link => {
-                link.addEventListener('click', handleScrollTo);
-            });
-        }
-
-        // -- NAVIGATION LOGIC --
-        function initNav() {
-            const nav = document.getElementById('main-nav-wrapper');
-            ScrollTrigger.create({
-                start: 'top -50',
-                onUpdate: (self) => {
-                    if (self.direction === 1) nav.classList.add('nav-scrolled');
-                    else if (self.scroll() < 50) nav.classList.remove('nav-scrolled');
-                }
-            });
-        }
-
-        // -- PROJECT LOGIC --
-        function initProjects() {
-            const preview = document.getElementById('project-preview');
-            const previewImg = document.getElementById('preview-img');
-
-            document.querySelectorAll('.project-item').forEach(item => {
-                const mainRow = item.querySelector('.project-main-row');
-                const infoBtn = item.querySelector('.project-info-btn');
-                
-                if (infoBtn) {
-                    infoBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        item.classList.toggle('active');
-                        document.querySelectorAll('.project-item').forEach(other => {
-                            if (other !== item) other.classList.remove('active');
-                        });
-                    });
-                }
-                
-                if (mainRow) {
-                    mainRow.addEventListener('click', (e) => {
-                        if (!e.target.closest('.project-info-btn')) {
-                            item.classList.toggle('active');
-                            document.querySelectorAll('.project-item').forEach(other => {
-                                if (other !== item) other.classList.remove('active');
-                            });
-                        }
-                    });
-
-                    if (window.innerWidth > 768) {
-                        mainRow.addEventListener('mouseenter', () => {
-                            const imgSrc = item.getAttribute('data-img');
-                            if (imgSrc) previewImg.src = imgSrc;
-                            gsap.to(preview, { opacity: 1, scale: 1, duration: 0.4 });
-                        });
-                        mainRow.addEventListener('mouseleave', () => {
-                            gsap.to(preview, { opacity: 0, scale: 0.8, duration: 0.4 });
-                        });
-                    }
-                }
-            });
-        }
-
-        // -- THREE.JS --
-        function initThree() {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById('canvas-container').appendChild(renderer.domElement);
-            
-            const geo = new THREE.SphereGeometry(1.5, 64, 64);
-            const mat = new THREE.MeshPhongMaterial({ 
-                color: 0x0066ff,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.2,
-                emissive: 0x001133,
-                shininess: 100
-            });
-            const mesh = new THREE.Mesh(geo, mat);
-            scene.add(mesh);
-            
-            const light = new THREE.PointLight(0xffffff, 1, 100);
-            light.position.set(5, 5, 5);
-            scene.add(light);
-            const ambient = new THREE.AmbientLight(0x404040);
-            scene.add(ambient);
-
-            camera.position.z = 5;
-            
-            function animate() {
-                requestAnimationFrame(animate);
-                mesh.rotation.x += 0.001;
-                mesh.rotation.y += 0.001;
-                
-                const targetX = ((app.mouse.x / window.innerWidth - 0.5) * 2);
-                const targetY = (-(app.mouse.y / window.innerHeight - 0.5) * 2);
-                mesh.position.x += (targetX - mesh.position.x) * 0.02;
-                mesh.position.y += (targetY - mesh.position.y) * 0.02;
-                
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-        }
-
-        // -- GSAP --
-        function initAnimations() {
-            gsap.registerPlugin(ScrollTrigger);
-            const loaderPercent = document.getElementById('loader-percent');
-            let load = { val: 0 };
-            gsap.to(load, {
-                val: 100, duration: 1.5,
-                onUpdate: () => {
-                    if (loaderPercent) loaderPercent.innerText = Math.floor(load.val).toString().padStart(2, '0');
-                },
-                onComplete: () => {
-                    gsap.to("#loader", { yPercent: -100, duration: 1, ease: "expo.inOut", onComplete: () => {
-                        gsap.to(".reveal-inner", { y: 0, stagger: 0.1, duration: 1.2, ease: "power4.out" });
-                        initNav();
-                    }});
-                }
-            });
-
-            gsap.utils.toArray('.inspiration-card').forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: i % 2 === 0 ? 1 : 2 },
-                    y: 100, opacity: 0
-                });
-            });
-        }
-
-        // Entry point
-        document.addEventListener('DOMContentLoaded', () => {
-            initMenuAndLinks(); // Initialize links immediately
-            initThree();
-            initAnimations();
-            initProjects();
+        const portrait = document.getElementById('about-trigger');
+        gsap.to(portrait, {
+            scrollTrigger: {
+                trigger: "#philosophy",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            },
+            y: -150,
+            opacity: 0
         });
+    }
+
+    function initAnimations() {
+      gsap.registerPlugin(ScrollTrigger);
+      const loaderPercent = document.getElementById('loader-percent');
+      let load = { val: 0 };
+      gsap.to(load, {
+        val: 100, duration: 1.5,
+        onUpdate: () => {
+          if (loaderPercent) loaderPercent.innerText = Math.floor(load.val).toString().padStart(2, '0');
+        },
+        onComplete: () => {
+          gsap.to("#loader", { yPercent: -100, duration: 1, ease: "expo.inOut", onComplete: () => {
+            gsap.to(".reveal-inner", { y: 0, stagger: 0.1, duration: 1.2, ease: "power4.out" });
+            initNav();
+          }});
+        }
+      });
+      gsap.utils.toArray('.inspiration-card').forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: i % 2 === 0 ? 1 : 2 },
+          y: 100, opacity: 0
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initMenuAndLinks();
+      initThree();
+      initAnimations();
+      initProjects();
+      initPhilosophy();
+    });
   </script>
 </body>
 
