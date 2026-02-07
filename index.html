@@ -69,14 +69,14 @@
       color: #666;
     }
 
-    /* Subtle Blue Glow & Pulse */
+    /* Subtle Blue Glow & Pulse - FIXED FOR MOBILE */
     .glow-container {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
+      overflow: visible;
       pointer-events: none;
       z-index: 0;
     }
@@ -86,14 +86,38 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 80vw;
-      height: 80vw;
+      width: min(80vw, 1000px);
+      height: min(80vw, 1000px);
       max-width: 1000px;
       max-height: 1000px;
       background: radial-gradient(circle, var(--glow-blue) 0%, rgba(0, 0, 0, 0) 70%);
-      filter: blur(100px);
+      filter: blur(60px);
       opacity: 0.4;
       animation: pulse-glow 8s ease-in-out infinite;
+    }
+
+    /* Mobile-specific adjustments */
+    @media (max-width: 768px) {
+      .glow-orb {
+        width: min(120vw, 800px);
+        height: min(120vw, 800px);
+        filter: blur(40px);
+        opacity: 0.5;
+      }
+
+      /* Hero glow positioning for mobile */
+      .hero-glow-orb {
+        top: 30% !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .glow-orb {
+        width: min(150vw, 600px);
+        height: min(150vw, 600px);
+        filter: blur(30px);
+        opacity: 0.6;
+      }
     }
 
     /* Positioning for Hero specifically */
@@ -102,10 +126,13 @@
     }
 
     @keyframes pulse-glow {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.3;
       }
+
       50% {
         transform: translate(-50%, -50%) scale(1.15);
         opacity: 0.6;
@@ -505,7 +532,7 @@
 
       <!-- Hero -->
       <section class="min-h-screen relative flex flex-col justify-end p-8 md:p-24 pb-20 pt-48 md:pt-36">
-        <!-- Blue Glow Animation Overlay -->
+        <!-- Blue Glow Animation Overlay - FIXED FOR MOBILE -->
         <div class="glow-container">
           <div class="glow-orb hero-glow-orb"></div>
         </div>
@@ -663,7 +690,7 @@
           <div class="mb-16 md:mb-24">
             <span class="meta-text">Ideology / Philosophy</span>
           </div>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
             <div class="md:col-span-8">
               <h2 class="philosophy-text text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-[1.15]">
@@ -1000,13 +1027,35 @@
       });
     }
 
+    // Force mobile detection and ensure animations run
+    function checkMobileAndForceAnimations() {
+      // Force the animation to run on mobile by ensuring visibility
+      const glowOrbs = document.querySelectorAll('.glow-orb');
+      glowOrbs.forEach(orb => {
+        orb.style.display = 'block';
+        orb.style.visibility = 'visible';
+        orb.style.opacity = '0.4';
+      });
+      
+      // Log for debugging
+      console.log('Mobile glow animation check - device width:', window.innerWidth);
+      console.log('Glow orbs found:', glowOrbs.length);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       initMenuAndLinks();
       initThree();
       initAnimations();
       initProjects();
       initPhilosophy();
+      checkMobileAndForceAnimations();
+      
+      // Additional check after page load
+      setTimeout(checkMobileAndForceAnimations, 500);
     });
+
+    // Handle resize events
+    window.addEventListener('resize', checkMobileAndForceAnimations);
   </script>
 </body>
 
