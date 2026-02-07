@@ -325,13 +325,13 @@
     }
 
     /* Scroll Fill Text Effect */
-    .philosophy-text span {
+    .philosophy-text span.philosophy-word {
       color: rgba(255, 255, 255, 0.15);
       transition: color 0.3s ease;
       display: inline-block;
     }
 
-    .philosophy-text span.active {
+    .philosophy-text span.philosophy-word.active {
       color: white;
     }
 
@@ -343,6 +343,7 @@
       aspect-ratio: 3/4;
       border-radius: 12px;
       overflow: hidden;
+      z-index: 10;
     }
 
     #about-cursor {
@@ -378,22 +379,6 @@
       display: none;
     }
 
-    /* Philosophy Quote Icon */
-    .quote-icon {
-      position: absolute;
-      font-size: clamp(10rem, 40vw, 30rem);
-      opacity: 0.02;
-      z-index: -1;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .philosophy-italic {
-      font-family: 'Montserrat', sans-serif;
-      font-style: italic;
-      font-weight: 900;
-    }
-
     @media (max-width: 768px) {
       .nav-capsule {
         padding: 10px 20px;
@@ -411,10 +396,6 @@
 
       .mobile-menu-dropdown {
         display: block;
-      }
-
-      .quote-icon {
-        font-size: clamp(5rem, 30vw, 20rem);
       }
     }
   </style>
@@ -620,44 +601,40 @@
         </div>
       </section>
 
-      <!-- Spacing between Projects and Philosophy (Desktop only) -->
-      <div class="hidden md:block h-40"></div>
-
       <!-- Philosophy Section -->
-      <section id="philosophy" class="py-40 p-8 md:p-16 overflow-hidden relative">
-        <!-- Title above Philosophy section -->
-        <div class="mb-16">
-          <span class="meta-text block mb-4 opacity-50">Core Beliefs</span>
-          <h2 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter">Philosophy</h2>
+      <section id="philosophy" class="py-40 md:pt-80 md:pb-60 p-8 md:p-16 overflow-hidden relative">
+        <!-- Quote Icon Background -->
+        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0">
+          <i data-lucide="quote" class="w-[300px] h-[300px] md:w-[600px] md:h-[600px] text-white fill-white"></i>
         </div>
 
-        <!-- Quote Icon in background -->
-        <div class="quote-icon font-premium-italic opacity-5 absolute -left-4 -top-20 md:-left-10 md:-top-40">
-          "
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center relative z-10">
-          <div class="md:col-span-8">
-            <h2 class="philosophy-text text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-[1.1]">
-              <span class="philosophy-word">Code</span>
-              <span class="philosophy-word">is</span>
-              <span class="philosophy-word">my</span>
-              <span class="philosophy-word philosophy-italic">structure.</span>
-              <span class="philosophy-word">Creativity</span>
-              <span class="philosophy-word">is</span>
-              <span class="philosophy-word">my</span>
-              <span class="philosophy-word philosophy-italic">language.</span>
-              <span class="philosophy-word">Innovation</span>
-              <span class="philosophy-word">happens</span>
-              <span class="philosophy-word">where</span>
-              <span class="philosophy-word">both</span>
-              <span class="philosophy-word philosophy-italic">intersect.</span>
-            </h2>
+        <div class="relative z-10">
+          <div class="mb-16 md:mb-24">
+            <span class="meta-text">Ideology / Philosophy</span>
           </div>
-          <div class="md:col-span-4 flex justify-center relative">
-            <div class="about-me-portrait" id="about-trigger">
-              <!-- Using a high-quality placeholder that looks premium -->
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Ellen" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+          
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+            <div class="md:col-span-8">
+              <h2 class="philosophy-text text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-[1.15]">
+                <span class="philosophy-word">Code</span>
+                <span class="philosophy-word">is</span>
+                <span class="philosophy-word">my</span>
+                <span class="philosophy-word font-premium-italic">structure.</span>
+                <span class="philosophy-word">Creativity</span>
+                <span class="philosophy-word">is</span>
+                <span class="philosophy-word">my</span>
+                <span class="philosophy-word font-premium-italic">language.</span>
+                <span class="philosophy-word">Innovation</span>
+                <span class="philosophy-word">happens</span>
+                <span class="philosophy-word">where</span>
+                <span class="philosophy-word">both</span>
+                <span class="philosophy-word font-premium-italic">intersect.</span>
+              </h2>
+            </div>
+            <div class="md:col-span-4 flex justify-center relative mt-16 md:mt-0">
+              <div class="about-me-portrait" id="about-trigger">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Ellen" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+              </div>
             </div>
           </div>
         </div>
@@ -920,8 +897,8 @@
             gsap.to(word, {
                 scrollTrigger: {
                     trigger: word,
-                    start: "top 80%",
-                    end: "top 40%",
+                    start: "top 85%",
+                    end: "top 45%",
                     scrub: true,
                     toggleClass: "active"
                 }
